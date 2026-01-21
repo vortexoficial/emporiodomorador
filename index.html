@@ -1,351 +1,760 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empório do Morador | Indique e Ganhe R$ 2.000</title>
+    <title>Empório do Morador | Conveniência no Condomínio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#1B4332',
+                            orange: '#E85D04',
+                            cream: '#FDFBF7',
+                            dark: '#0d261c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- EFEITO DE REFLEXO MAIS VISÍVEL COM PAUSA --- */
+        @keyframes shine-pass {
+            0% { left: -150%; opacity: 0; }
+            5% { opacity: 1; }
+            40% { left: 150%; opacity: 0; }
+            100% { left: 150%; opacity: 0; }
+        }
+
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+            transform: skewX(-25deg);
+            filter: blur(5px);
+            animation: shine-pass 5s infinite ease-in-out; 
+            pointer-events: none;
+        }
+
+        /* --- MARQUEE INFINITO (Faixa) --- */
+        .marquee-text {
+            animation: scroll-left 40s linear infinite; 
+            display: flex; 
+            width: max-content; 
+        }
+        
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+        
+        /* --- ACTIVE STATE MOBILE (Cards) --- */
+        @media (max-width: 1024px) {
+            .card-active {
+                transform: translateY(-8px) !important;
+                border-color: #E85D04 !important;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+            }
+            .card-active .card-icon {
+                background-color: #E85D04 !important;
+                color: white !important;
+            }
+        }
+
+        /* --- HERO IMAGE ANIMATION (MOBILE) --- */
+        @keyframes hero-pulse {
+            0% { transform: rotate(2deg) scale(1); }
+            30% { transform: rotate(0deg) scale(1.02); } 
+            70% { transform: rotate(0deg) scale(1.02); } 
+            100% { transform: rotate(2deg) scale(1); }   
+        }
+
+        .hero-animate-active {
+            animation: hero-pulse 1.5s ease-in-out forwards;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-animate-active {
+                animation: none;
+            }
+        }
+
+        /* --- GOOGLE REVIEWS SCROLL --- */
+        .reviews-scroll-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .reviews-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        html { scroll-behavior: smooth; }
+    </style>
 </head>
-<body id="top">
+<body class="bg-brand-cream text-gray-800 font-sans antialiased selection:bg-brand-orange selection:text-white">
 
-    <div class="top-bar">
-        OPORTUNIDADE EXCLUSIVA
-    </div>
+    <header class="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300">
+        <div class="container mx-auto max-w-7xl px-4">
+            <div class="flex h-20 items-center justify-between bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg mt-4 px-6 shadow-lg">
+                
+                <a href="#hero" class="block font-display font-bold text-2xl text-brand-green tracking-tighter hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-basket-shopping text-brand-orange"></i> EMPÓRIO
+                </a>
+                
+                <nav class="hidden lg:block">
+                    <ul class="flex items-center gap-8 text-sm font-bold uppercase tracking-wide text-brand-green">
+                        <li><a href="#sindicos" class="hover:text-brand-orange transition-colors">Para Síndicos</a></li>
+                        <li><a href="#moradores" class="hover:text-brand-orange transition-colors">Para Moradores</a></li>
+                        <li><a href="#como-funciona" class="hover:text-brand-orange transition-colors">Como Funciona</a></li>
+                        
+                        <li>
+                            <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Gostaria%20de%20indicar%20um%20condom%C3%ADnio." 
+                               target="_blank"
+                               class="btn-shine bg-brand-orange text-white py-2 px-6 rounded-full flex items-center hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/30 transform hover:-translate-y-1">
+                                <i class="fa-brands fa-whatsapp mr-2 text-lg"></i>
+                                Indicar Agora
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-    <header id="header">
-        <div class="container nav-container">
-            <div class="logo-img">
-                <img src="logo.png" alt="Empório do Morador Logo">
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#como-funciona">Como Funciona</a></li>
-                    <li><a href="#vantagens-condominio">Vantagens</a></li>
-                    <li><a href="#depoimentos-google">Depoimentos</a></li>
-                </ul>
-            </nav>
-            <div class="nav-actions">
-                 <a href="#formulario" class="btn btn-sm btn-shine">Quero Indicar</a>
-                 <div class="menu-toggle">
-                     <i class="fa-solid fa-bars"></i>
-                 </div>
+                <div class="flex items-center gap-3 lg:hidden">
+                     <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Gostaria%20de%20indicar%20um%20condom%C3%ADnio." 
+                        target="_blank"
+                        class="btn-shine bg-brand-orange text-white font-bold py-2 px-4 rounded-lg flex items-center text-xs uppercase shadow-md">
+                        Indicar
+                    </a>
+                    <button id="hamburger-menu" class="text-brand-green text-2xl focus:outline-none p-2 active:scale-90 transition-transform">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
             </div>
         </div>
     </header>
 
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Leve um Mercado 24h para seu condomínio e ganhe <span class="highlight">R$ 2.000,00</span></h1>
-                <p>Indique o seu síndico para receber um Empório do Morador. Instalação custo zero para o prédio e dinheiro no seu bolso.</p>
-                
-                <a href="#formulario" class="btn btn-shine">
-                    QUERO INDICAR E GANHAR
-                </a>
-                
-                <p class="small-text-hero">
-                    <i class="fa-regular fa-clock"></i> Leva menos de 1 minuto para indicar.
-                </p>
-            </div>
-            
-            <div class="hero-img">
-                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1000&auto=format&fit=crop" alt="Mercado Autônomo Moderno">
-            </div>
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-green/95 backdrop-blur-xl z-[999] flex flex-col p-6 transition-transform duration-300 ease-in-out translate-x-full lg:hidden">
+        <div class="flex justify-between items-center mb-10">
+            <span class="text-white font-display font-bold text-xl"><i class="fa-solid fa-basket-shopping text-brand-orange"></i> MENU</span>
+            <button id="close-menu" class="text-white text-3xl focus:outline-none p-2 active:rotate-90 transition-transform">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-    </section>
+        <nav class="flex-grow flex flex-col justify-center">
+            <ul class="flex flex-col gap-8 text-center text-white font-display font-bold text-2xl">
+                <li><a href="#hero" class="mobile-link hover:text-brand-orange transition-colors block p-2">Início</a></li>
+                <li><a href="#sindicos" class="mobile-link hover:text-brand-orange transition-colors block p-2">Para Síndicos</a></li>
+                <li><a href="#moradores" class="mobile-link hover:text-brand-orange transition-colors block p-2">Para Moradores</a></li>
+                <li><a href="#como-funciona" class="mobile-link hover:text-brand-orange transition-colors block p-2">Vantagens</a></li>
+            </ul>
+        </nav>
+        <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20consultor." 
+           target="_blank"
+           class="mobile-link w-full text-center bg-brand-orange text-white font-bold py-4 rounded-xl text-lg shadow-xl uppercase active:bg-orange-700 transition-colors">
+            <i class="fa-brands fa-whatsapp mr-2"></i> Falar no WhatsApp
+        </a>
+    </div>
 
-    <section class="continuous-carousel-section" id="vantagens-condominio">
-        <div class="carousel-container-text">
-             <div class="carousel-track-text">
-                <div class="text-card"><i class="fa-solid fa-building-circle-check"></i><h4>Valorização</h4><p>Seu imóvel vale mais.</p></div>
-                <div class="text-card"><i class="fa-solid fa-hand-holding-dollar"></i><h4>Custo Zero</h4><p>Instalação grátis.</p></div>
-                <div class="text-card"><i class="fa-solid fa-shield-cat"></i><h4>Segurança</h4><p>Menos estranhos no prédio.</p></div>
-                <div class="text-card"><i class="fa-solid fa-bolt"></i><h4>Rapidez</h4><p>Compras em segundos.</p></div>
-                <div class="text-card"><i class="fa-solid fa-elevator"></i><h4>Conveniência</h4><p>Mercado de elevador.</p></div>
-                
-                <div class="text-card"><i class="fa-solid fa-building-circle-check"></i><h4>Valorização</h4><p>Seu imóvel vale mais.</p></div>
-                <div class="text-card"><i class="fa-solid fa-hand-holding-dollar"></i><h4>Custo Zero</h4><p>Instalação grátis.</p></div>
-                <div class="text-card"><i class="fa-solid fa-shield-cat"></i><h4>Segurança</h4><p>Menos estranhos no prédio.</p></div>
-                <div class="text-card"><i class="fa-solid fa-bolt"></i><h4>Rapidez</h4><p>Compras em segundos.</p></div>
-                <div class="text-card"><i class="fa-solid fa-elevator"></i><h4>Conveniência</h4><p>Mercado de elevador.</p></div>
-
-                <div class="text-card"><i class="fa-solid fa-building-circle-check"></i><h4>Valorização</h4><p>Seu imóvel vale mais.</p></div>
-                <div class="text-card"><i class="fa-solid fa-hand-holding-dollar"></i><h4>Custo Zero</h4><p>Instalação grátis.</p></div>
-                <div class="text-card"><i class="fa-solid fa-shield-cat"></i><h4>Segurança</h4><p>Menos estranhos no prédio.</p></div>
-                <div class="text-card"><i class="fa-solid fa-bolt"></i><h4>Rapidez</h4><p>Compras em segundos.</p></div>
-                <div class="text-card"><i class="fa-solid fa-elevator"></i><h4>Conveniência</h4><p>Mercado de elevador.</p></div>
-             </div>
-        </div>
-    </section>
-
-    <section class="features" id="vantagens">
-        <div class="container">
-            <h2 class="section-title">Bateu aquela fome na madrugada?</h2>
-            <p class="section-subtitle">A solução para os esquecimentos do dia a dia.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-clock"></i></div>
-                    <h3>Aberto 24h</h3>
-                    <p>Madrugada ou feriado. Estamos sempre abertos quando você precisa.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                    <h3>Sem Filas</h3>
-                    <p>Tecnologia Scan & Go. Você pega, bipa no totem e leva.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-house-lock"></i></div>
-                    <h3>Sem Sair de Casa</h3>
-                    <p>Esqueça o trânsito. O mercado está no seu térreo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="steps" id="como-funciona">
-        <div class="container">
-            <h2 class="section-title">3 Passos para ganhar R$ 2.000,00</h2>
-            <div class="steps-wrapper">
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <h4>Indique</h4>
-                    <p>Preencha o formulário com o contato do Síndico.</p>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <h4>Aguarde</h4>
-                    <p>Nossa equipe apresenta o projeto sem custo.</p>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <h4>Receba</h4>
-                    <p>Contrato fechado? Você ganha R$ 1.500 + R$ 500.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="google-reviews-section" id="depoimentos-google">
-        <div class="container">
-            <div class="reviews-header-block">
-                <h2 class="section-title">O que dizem os moradores</h2>
-                <p class="section-subtitle">Experiências reais de quem já tem um Empório.</p>
-            </div>
-            
-            <div class="reviews-viewport">
-                <div class="reviews-track" id="reviewsTrack">
+    <main>
+        <section id="hero" class="relative pt-36 pb-20 overflow-hidden min-h-[90vh] flex items-center">
+            <div class="container mx-auto max-w-7xl px-4"> 
+                <div class="flex flex-col lg:grid lg:grid-cols-2 lg:gap-12 items-center">
                     
-                    <div class="review-card-google">
-                        <div class="review-header-google">
-                            <div class="review-avatar" style="background-color: #D93025;">J</div>
-                            <div class="review-meta">
-                                <strong>Juliana Peres</strong>
-                                <span>7 avaliações · um mês atrás</span>
-                            </div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-logo-icon">
-                        </div>
-                        <div class="stars-google">★★★★★</div>
-                        <p class="review-text-google">
-                            "Admiro muito a praticidade. Atende onde e quando você precisa, sempre dá um jeito de salvar o jantar!"
+                    <div class="text-center lg:text-left mb-10 lg:mb-0 z-10 animate-fade-in-up">
+                        <span class="inline-block py-1 px-3 rounded-full bg-brand-orange/10 text-brand-orange text-xs font-bold tracking-widest mb-4 uppercase border border-brand-orange/20">
+                            Inovação Condominial
+                        </span>
+                        <h1 class="text-4xl lg:text-6xl font-display font-black text-brand-green leading-tight mb-6">
+                            Conveniência 24h dentro do seu <span class="text-brand-orange">elevador.</span>
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                            Leve praticidade e segurança para o seu condomínio com custo zero de instalação. O conceito de "posto de conveniência", agora no seu prédio.
                         </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Sou%20s%C3%ADndico%2Fgestor%20e%20gostaria%20de%20solicitar%20uma%20proposta%20t%C3%A9cnica." 
+                               target="_blank"
+                               class="btn-shine relative overflow-hidden bg-brand-orange text-white font-bold py-4 px-8 rounded-lg text-sm uppercase tracking-wide hover:scale-105 transition-transform shadow-xl shadow-brand-orange/20">
+                                Solicitar Proposta
+                            </a>
+                            <a href="#como-funciona" 
+                               class="bg-white text-brand-green border-2 border-brand-green font-bold py-4 px-8 rounded-lg text-sm uppercase tracking-wide hover:bg-brand-green hover:text-white transition-colors">
+                                Como Funciona
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="review-card-google">
-                        <div class="review-header-google">
-                            <div class="review-avatar" style="background-color: #E37400;">C</div>
-                            <div class="review-meta">
-                                <strong>Carolina Liberatti</strong>
-                                <span>Local Guide · 24 avaliações</span>
-                            </div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-logo-icon">
-                        </div>
-                        <div class="stars-google">★★★★★</div>
-                        <p class="review-text-google">
-                            "Essencial para minha segurança. Indiquei pro síndico e a instalação foi rápida. App funciona super bem."
-                        </p>
+                    <div class="relative w-full flex justify-center lg:justify-end">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-brand-green/5 rounded-full blur-3xl -z-10"></div>
+                        <img 
+                            id="hero-img-mobile"
+                            src="image.png" 
+                            alt="Mercado Autônomo"
+                            class="rounded-3xl shadow-2xl border-4 border-white w-full max-w-md object-cover transform rotate-2 hover:rotate-0 transition-transform duration-500 origin-center"
+                        >
                     </div>
-
-                    <div class="review-card-google">
-                        <div class="review-header-google">
-                            <div class="review-avatar" style="background-color: #1967D2;">L</div>
-                            <div class="review-meta">
-                                <strong>Letícia Tavares</strong>
-                                <span>4 avaliações · 4 meses atrás</span>
-                            </div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-logo-icon">
-                        </div>
-                        <div class="stars-google">★★★★★</div>
-                        <p class="review-text-google">
-                            "Um dos melhores investimentos do condomínio. Recomendo muito!"
-                        </p>
-                    </div>
-
-                    <div class="review-card-google">
-                        <div class="review-header-google">
-                            <div class="review-avatar" style="background-color: #188038;">R</div>
-                            <div class="review-meta">
-                                <strong>Ricardo Silva</strong>
-                                <span>Síndico Profissional</span>
-                            </div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-logo-icon">
-                        </div>
-                        <div class="stars-google">★★★★★</div>
-                        <p class="review-text-google">
-                            "Como síndico, aprovei 100%. A empresa cuida de toda a reposição e limpeza."
-                        </p>
-                    </div>
-
-                     <div class="review-card-google">
-                        <div class="review-header-google">
-                            <div class="review-avatar" style="background-color: #8e24aa;">M</div>
-                            <div class="review-meta">
-                                <strong>Marcos D.</strong>
-                                <span>Morador</span>
-                            </div>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" class="google-logo-icon">
-                        </div>
-                        <div class="stars-google">★★★★★</div>
-                        <p class="review-text-google">
-                            "Salvou meu churrasco no domingo. Tinha carvão e gelo no mercadinho!"
-                        </p>
-                    </div>
-
                 </div>
             </div>
-            
-            <div class="carousel-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+        </section>
+
+        <div class="bg-brand-green py-4 overflow-hidden relative flex">
+            <div class="flex gap-12 text-white/90 font-bold uppercase text-sm tracking-widest whitespace-nowrap marquee-text">
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
             </div>
         </div>
-    </section>
 
-    <section class="cta-section" id="formulario">
-        <div class="container cta-container">
-            <div class="form-wrapper">
-                <h3><i class="fa-solid fa-pen-to-square"></i> Indique e Garanta</h3>
-                <form action="#" method="POST">
-                    <div class="input-group">
-                        <label>Seu Nome</label>
-                        <input type="text" placeholder="Nome completo" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Seu WhatsApp</label>
-                        <input type="tel" placeholder="(DD) 99999-9999" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Nome do Condomínio</label>
-                        <input type="text" placeholder="Ex: Residencial Flores" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Contato do Síndico</label>
-                        <input type="tel" placeholder="WhatsApp do síndico" required>
-                    </div>
-                    <button type="submit" class="btn btn-block btn-shine">ENVIAR INDICAÇÃO</button>
-                </form>
-            </div>
-            
-            <div class="objections-wrapper">
-                <h3>O síndico vai amar:</h3>
-                <ul class="check-list">
-                    <li>
-                        <div class="icon-wrap"><i class="fa-solid fa-check-circle"></i></div>
-                        <div class="text-wrap">
-                            <strong>Custo ZERO:</strong>
-                            <p>Instalação e manutenção por nossa conta.</p>
+        <section id="como-funciona" class="py-24 bg-white">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-display font-bold text-brand-green mb-4" id="sindicos">
+                        Para Síndicos e Gestores
+                    </h2>
+                    <p class="text-gray-600">
+                        Modernize sua gestão e valorize o patrimônio sem gastar nada.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8" id="cards-container">
+                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30">
+                        <div class="card-icon w-14 h-14 rounded-xl bg-brand-green text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange transition-colors duration-300">
+                            <i class="fa-solid fa-chart-line"></i>
                         </div>
-                    </li>
-                    <li>
-                        <div class="icon-wrap"><i class="fa-solid fa-check-circle"></i></div>
-                        <div class="text-wrap">
-                            <strong>Valorização:</strong>
-                            <p>Condomínios com mercado valem mais.</p>
+                        <h3 class="text-xl font-bold text-brand-green mb-3">Valorização Real</h3>
+                        <p class="text-gray-600 text-sm">Condomínios com mercado interno têm unidades mais valorizadas e procuradas.</p>
+                    </div>
+
+                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30">
+                        <div class="card-icon w-14 h-14 rounded-xl bg-brand-green text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange transition-colors duration-300">
+                            <i class="fa-solid fa-shield-halved"></i>
                         </div>
-                    </li>
-                    <li>
-                        <div class="icon-wrap"><i class="fa-solid fa-check-circle"></i></div>
-                        <div class="text-wrap">
-                            <strong>Sem Dor de Cabeça:</strong>
-                            <p>Nós gerenciamos tudo.</p>
+                        <h3 class="text-xl font-bold text-brand-green mb-3">Mais Segurança</h3>
+                        <p class="text-gray-600 text-sm">Reduz a entrada de entregadores externos e a saída de moradores à noite.</p>
+                    </div>
+
+                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30">
+                        <div class="card-icon w-14 h-14 rounded-xl bg-brand-green text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange transition-colors duration-300">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
                         </div>
-                    </li>
-                </ul>
-                <div class="trust-badge">
-                    <i class="fa-solid fa-lock"></i> Seus dados estão seguros.
+                        <h3 class="text-xl font-bold text-brand-green mb-3">Custo Zero</h3>
+                        <p class="text-gray-600 text-sm">Instalação, manutenção e reposição são 100% por nossa conta.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="main-footer">
-        <button id="backToTopBtn" class="back-to-top-divider" title="Voltar ao Topo">
-            <div class="arrow-circle">
-                <i class="fa-solid fa-arrow-up"></i>
-            </div>
-            <span class="back-text">Voltar ao Topo</span>
-        </button>
+        <section id="moradores" class="py-24 bg-brand-green relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
 
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <div class="footer-logo">
-                    <img src="logo.png" alt="Empório do Morador" style="filter: brightness(0) invert(1);">
+            <div class="container mx-auto max-w-7xl px-4 relative z-10">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/2">
+                        <span class="text-brand-orange font-bold tracking-widest uppercase mb-2 block">Campanha Exclusiva</span>
+                        <h2 class="text-4xl md:text-5xl font-display font-black text-white mb-6">
+                            Indique e Ganhe <br><span class="text-brand-orange">R$ 2.000,00</span>
+                        </h2>
+                        <p class="text-white/80 text-lg mb-8">
+                            Seu condomínio ainda não tem um mercado? Indique para o síndico. Se fecharmos contrato, você ganha:
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center text-white font-bold text-xl">
+                                <i class="fa-solid fa-circle-check text-brand-orange mr-4"></i> R$ 1.500,00 em Dinheiro
+                            </li>
+                            <li class="flex items-center text-white font-bold text-xl">
+                                <i class="fa-solid fa-circle-check text-brand-orange mr-4"></i> R$ 500,00 em Produtos
+                            </li>
+                        </ul>
+                        <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Sou%20morador%20e%20quero%20participar%20da%20campanha%20Indique%20e%20Ganhe." 
+                           target="_blank"
+                           class="btn-shine inline-block bg-white text-brand-green font-bold py-4 px-10 rounded-full hover:bg-gray-100 transition-colors shadow-2xl hover:scale-105 transform duration-300">
+                            QUERO INDICAR AGORA
+                        </a>
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-sm rotate-3 hover:rotate-0 transition-all duration-500 group cursor-pointer">
+                            <div class="text-center mb-6">
+                                <div class="w-20 h-20 bg-brand-orange rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-gift"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">Prêmio Garantido</h3>
+                                <p class="text-sm text-gray-500">Sem sorteio. Fechou, ganhou.</p>
+                            </div>
+                            <div class="border-t border-dashed border-gray-300 pt-6">
+                                <p class="text-gray-600 text-sm mb-2 text-center">Mix de Conveniência:</p>
+                                <div class="flex flex-wrap gap-2 justify-center">
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs font-bold text-gray-600">Snacks</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs font-bold text-gray-600">Bebidas Geladas</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs font-bold text-gray-600">Congelados</span>
+                                    <span class="px-3 py-1 bg-gray-100 rounded-full text-xs font-bold text-gray-600">Mercearia Básica</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="footer-desc">
-                    Conveniência e valorização para seu condomínio.
-                </p>
             </div>
-            <div class="footer-col">
-                <h4>Navegação</h4>
-                <ul class="footer-links">
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#vantagens-condominio">Vantagens</a></li>
-                    <li><a href="#depoimentos-google">Depoimentos</a></li>
-                </ul>
+        </section>
+
+        <section id="reviews" class="py-24 bg-brand-cream relative overflow-hidden">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-display font-bold text-brand-green mb-2">
+                        O que <span class="text-brand-orange">síndicos e moradores</span> dizem
+                    </h2>
+                    <div class="flex flex-col items-center">
+                        <span class="text-5xl font-black text-brand-green mt-4">5,0</span>
+                        <div class="flex text-yellow-400 text-xl my-2 gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-500">Baseado em avaliações reais</p>
+                    </div>
+                </div>
+
+                <div class="relative w-full max-w-6xl mx-auto overflow-hidden px-2">
+                    
+                    <div id="reviews-track" class="flex gap-6 transition-transform duration-500 ease-in-out reviews-scroll-container h-full items-stretch py-4">
+                        
+                        <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xl mr-4">
+                                    R
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Roberto Alves</h4>
+                                    <p class="text-xs text-gray-500">Morador • 2 dias atrás</p>
+                                </div>
+                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                "Excelente! Salva minha vida quando esqueço o óleo ou quero um sorvete à noite. Preço justo e muito prático."
+                            </p>
+                        </div>
+
+                        <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xl mr-4">
+                                    M
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Maria Helena</h4>
+                                    <p class="text-xs text-gray-500">Síndica • 1 semana atrás</p>
+                                </div>
+                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                "A instalação foi super rápida e os moradores adoraram. Valorizou o condomínio e reduziu o fluxo de entregadores."
+                            </p>
+                        </div>
+
+                        <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xl mr-4">
+                                    C
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Carlos Eduardo</h4>
+                                    <p class="text-xs text-gray-500">Morador • 3 semanas atrás</p>
+                                </div>
+                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                "Indiquei o prédio da minha sogra e ganhei o prêmio da campanha. A empresa é séria e cumpriu tudo o que prometeu."
+                            </p>
+                        </div>
+
+                        <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold text-xl mr-4">
+                                    F
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Fernanda Lima</h4>
+                                    <p class="text-xs text-gray-500">Moradora • 1 mês atrás</p>
+                                </div>
+                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                "A variedade de produtos é ótima. Tem bebidas geladas e lanches rápidos. O pão de queijo congelado é top!"
+                            </p>
+                        </div>
+
+                         <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xl mr-4">
+                                    J
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">João Paulo</h4>
+                                    <p class="text-xs text-gray-500">Síndico Profissional • 2 meses atrás</p>
+                                </div>
+                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs mb-4">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                "Já instalei em 3 condomínios que administro. Zero custo e zero dor de cabeça. O suporte deles é excelente."
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="w-full flex justify-center gap-2 mt-10 z-10 relative" id="reviews-dots">
+                    <button class="w-3 h-3 rounded-full bg-brand-orange transition-colors"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300 transition-colors"></button>
+                </div>
+
             </div>
-            <div class="footer-col">
-                <h4>Contato</h4>
-                <ul class="contact-list">
-                    <li><i class="fa-solid fa-envelope"></i> contato@emporio.com</li>
-                    <li><i class="fa-solid fa-location-dot"></i> São Paulo, SP</li>
-                </ul>
+        </section>
+
+        <section id="contato" class="py-24 bg-brand-cream border-t border-gray-200">
+            <div class="container mx-auto max-w-4xl px-4">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                    <div class="bg-brand-dark p-10 md:w-2/5 text-white flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-green rounded-bl-full opacity-20"></div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">Fale Conosco</h3>
+                            <p class="text-white/70 text-sm mb-8">Preencha o formulário para indicar seu condomínio ou solicitar uma proposta técnica.</p>
+                        </div>
+                        <div class="space-y-6 relative z-10">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-brand-orange flex items-center justify-center text-white">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/50 uppercase">WhatsApp</p>
+                                    <p class="font-bold">+55 (13) 97403-8014</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/50 uppercase">Email</p>
+                                    <p class="font-bold">contato@emporio.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-10 md:w-3/5">
+                        <form action="#" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Seu Nome</label>
+                                <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-brand-orange transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">WhatsApp</label>
+                                <input type="tel" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-brand-orange transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Perfil</label>
+                                <select class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 focus:outline-none focus:border-brand-orange transition-colors">
+                                    <option>Morador (Quero Indicar)</option>
+                                    <option>Síndico (Quero Contratar)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full btn-shine bg-brand-green text-white font-bold py-4 rounded-lg uppercase tracking-wide hover:bg-brand-orange transition-colors shadow-lg">
+                                Enviar Agora
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="footer-col desktop-only">
-                <h4>Quer indicar?</h4>
-                <p style="font-size: 0.85rem; margin-bottom: 10px; color: #9CA3AF;">Não perca tempo, a indicação leva menos de 1 minuto.</p>
-                <a href="#formulario" class="btn btn-sm btn-footer">Indicar Agora</a>
-            </div>
-        </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-dark text-white pt-0 pb-10 relative border-t border-brand-green/30">
         
-        <div class="mobile-footer-cta">
-             <a href="#formulario" class="btn btn-block btn-shine">INDICAR AGORA</a>
+        <div class="relative z-30 flex flex-col items-center mb-16 pt-10">
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 flex flex-col items-center group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="bg-brand-orange text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-xl hover:bg-orange-600 transition-all group-hover:scale-110">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+                <span class="text-[10px] font-bold text-brand-orange mt-2 uppercase tracking-widest">Voltar para o topo</span>
+            </div>
+
+            <div class="text-center mt-8 max-w-2xl px-4">
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">
+                    Pronto para valorizar seu condomínio?
+                </h3>
+                <p class="text-white/60 text-sm md:text-base mb-8">
+                    Leve a conveniência de um mercado 24h para os seus moradores.
+                </p>
+                
+                <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Tenho%20interesse%20em%20levar%20o%20Emp%C3%B3rio%20para%20meu%20condom%C3%ADnio." 
+                   target="_blank"
+                   class="btn-shine inline-block bg-brand-green border border-brand-green/30 hover:bg-brand-orange hover:border-brand-orange text-white font-bold py-3 px-8 rounded-md text-sm uppercase tracking-wide transition-colors shadow-lg">
+                    INDICAR AGORA
+                </a>
+            </div>
         </div>
 
-        <div class="footer-bottom">
-            <div class="container bottom-flex">
-                <p>&copy; 2025 Empório do Morador.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <div class="container mx-auto max-w-7xl px-4 mb-12">
+            <hr class="border-white/10">
+        </div>
+
+        <div class="container mx-auto max-w-7xl px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <div>
+                    <a href="#hero" class="block font-display font-bold text-2xl text-white tracking-tighter mb-6">
+                        <i class="fa-solid fa-basket-shopping text-brand-orange"></i> EMPÓRIO
+                    </a>
+                    <p class="text-sm leading-relaxed text-white/60 mb-6">
+                        Especialistas em mercados autônomos para condomínios. Levamos tecnologia, praticidade e segurança para o seu dia a dia.
+                    </p>
                 </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 border-l-4 border-brand-orange pl-3">Menu Rápido</h4>
+                    <ul class="space-y-3 text-sm text-white/70">
+                        <li><a href="#hero" class="hover:text-brand-orange transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-brand-orange/50"></i> Início</a></li>
+                        <li><a href="#sindicos" class="hover:text-brand-orange transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-brand-orange/50"></i> Para Síndicos</a></li>
+                        <li><a href="#moradores" class="hover:text-brand-orange transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-brand-orange/50"></i> Para Moradores</a></li>
+                        <li><a href="#como-funciona" class="hover:text-brand-orange transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-brand-orange/50"></i> Vantagens</a></li>
+                        <li><a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Gostaria%20de%20entrar%20em%20contato." target="_blank" class="hover:text-brand-orange transition-colors flex items-center"><i class="fas fa-angle-right mr-2 text-brand-orange/50"></i> Contato</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 border-l-4 border-brand-orange pl-3">Fale Conosco</h4>
+                    <ul class="space-y-4 text-sm text-white/70">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-brand-orange mt-1 mr-3"></i>
+                            <span>Atendimento Nacional para Condomínios.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-brand-orange mr-3"></i>
+                            <a href="https://wa.me/5513974038014" target="_blank" class="hover:text-brand-orange transition-colors">+55 (13) 97403-8014</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-brand-orange mr-3"></i>
+                            <a href="#" class="hover:text-brand-orange transition-colors break-all">contato@emporio.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 border-l-4 border-brand-orange pl-3">Siga-nos</h4>
+                    <p class="text-sm text-white/60 mb-4">Acompanhe nossas novidades:</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded bg-white/10 flex items-center justify-center text-white/70 hover:bg-brand-orange hover:text-white transition-all duration-300 group shadow-sm">
+                            <i class="fab fa-facebook-f text-lg group-hover:scale-110 transition-transform"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded bg-white/10 flex items-center justify-center text-white/70 hover:bg-brand-orange hover:text-white transition-all duration-300 group shadow-sm">
+                            <i class="fab fa-instagram text-lg group-hover:scale-110 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-white/40">
+                <p>&copy; 2026 Empório do Morador. Todos os direitos reservados.</p>
+                <p class="mt-2 md:mt-0 flex items-center">
+                    Desenvolvido por 
+                    <a href="#" class="font-bold text-brand-orange hover:text-white transition-colors uppercase tracking-wider ml-1 flex items-center">
+                        <i class="fas fa-bolt mr-1"></i> FUTURA DESIGN
+                    </a>
+                </p>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float">
+    <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] text-white rounded-full shadow-lg flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. MENU MOBILE ---
+            const hamburgerBtn = document.getElementById('hamburger-menu');
+            const closeMenuBtn = document.getElementById('close-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function openMenu() {
+                mobileMenuOverlay.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                mobileMenuOverlay.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+            }
+
+            if(hamburgerBtn) hamburgerBtn.addEventListener('click', (e) => { e.stopPropagation(); openMenu(); });
+            if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+            mobileMenuOverlay.addEventListener('click', (e) => { if(e.target === mobileMenuOverlay) closeMenu(); });
+
+
+            // --- 2. SCROLL SPY PARA CARDS (SÍNDICOS) ---
+            const cards = document.querySelectorAll('.sindico-card');
+            if (cards.length > 0) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '-40% 0px -40% 0px', 
+                    threshold: 0
+                };
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('card-active');
+                        } else {
+                            entry.target.classList.remove('card-active');
+                        }
+                    });
+                }, observerOptions);
+                cards.forEach(card => observer.observe(card));
+            }
+
+            // --- 3. ANIMAÇÃO DE CLIQUE AUTOMÁTICO NA IMAGEM HERO (MOBILE) ---
+            const heroImg = document.getElementById('hero-img-mobile');
+            if(heroImg) {
+                const heroObserverOptions = {
+                    root: null,
+                    rootMargin: '-30% 0px -30% 0px',
+                    threshold: 0.5 
+                };
+
+                const heroObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('hero-animate-active');
+                        } else {
+                            entry.target.classList.remove('hero-animate-active');
+                        }
+                    });
+                }, heroObserverOptions);
+
+                heroObserver.observe(heroImg);
+            }
+
+            // --- 4. CARROSSEL DE REVIEWS (AUTO-SKIP 2.5s) ---
+            const track = document.getElementById('reviews-track');
+            const dots = document.querySelectorAll('#reviews-dots button');
+            
+            if(track && dots.length > 0) {
+                let currentIndex = 0;
+                const totalCards = 5; // Total de reviews
+                
+                function updateCarousel() {
+                    const isDesktop = window.innerWidth >= 768;
+                    const itemsVisible = isDesktop ? 3 : 1;
+                    const cardWidthPercent = isDesktop ? 33.333 : 100;
+                    const gap = 24; 
+                    
+                    const maxIndex = totalCards - itemsVisible;
+                    
+                    if (currentIndex > maxIndex) {
+                        currentIndex = 0; // Volta para o início
+                    }
+
+                    // Move o scroll horizontal
+                    const card = track.children[0];
+                    const cardWidth = card.offsetWidth;
+                    const scrollAmount = (cardWidth + 24) * currentIndex;
+                    
+                    track.parentElement.scrollTo({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+
+                    // Atualiza Dots
+                    dots.forEach((dot, idx) => {
+                        if(idx === currentIndex) {
+                            dot.classList.remove('bg-gray-300');
+                            dot.classList.add('bg-brand-orange');
+                        } else {
+                            dot.classList.add('bg-gray-300');
+                            dot.classList.remove('bg-brand-orange');
+                        }
+                    });
+                }
+
+                // Auto Play 2.5s
+                setInterval(() => {
+                    currentIndex++;
+                    const isDesktop = window.innerWidth >= 768;
+                    const itemsVisible = isDesktop ? 3 : 1;
+                    if(currentIndex > totalCards - itemsVisible) {
+                        currentIndex = 0;
+                    }
+                    updateCarousel();
+                }, 2500);
+            }
+        });
+    </script>
 </body>
 </html>

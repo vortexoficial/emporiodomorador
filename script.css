@@ -1,0 +1,42 @@
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- LÓGICA DO MENU MOBILE ---
+    const hamburgerBtn = document.getElementById('hamburger-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    // Função para abrir
+    function openMenu() {
+        if(mobileMenuOverlay) {
+            mobileMenuOverlay.classList.remove('-translate-x-full');
+            document.body.style.overflow = 'hidden'; // Impede rolagem do fundo
+        }
+    }
+
+    // Função para fechar
+    function closeMenu() {
+        if(mobileMenuOverlay) {
+            mobileMenuOverlay.classList.add('-translate-x-full');
+            document.body.style.overflow = ''; // Libera rolagem
+        }
+    }
+
+    // Eventos
+    if(hamburgerBtn) hamburgerBtn.addEventListener('click', openMenu);
+    if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+
+    // Fechar ao clicar em qualquer link
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Fechar ao clicar fora (opcional, mas bom para UX)
+    if(mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', (e) => {
+            if(e.target === mobileMenuOverlay) {
+                closeMenu();
+            }
+        });
+    }
+});
