@@ -106,16 +106,30 @@
             100% { transform: translateX(-50%); } 
         }
         
-        /* --- ACTIVE STATE MOBILE --- */
+        /* --- ACTIVE STATE MOBILE (SCROLL SPY) --- */
         @media (max-width: 1024px) {
-            .card-active {
+            /* Cards de Síndicos */
+            .sindico-card.card-active {
                 transform: translateY(-8px) !important;
                 border-color: #E85D04 !important;
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
             }
-            .card-active .card-icon {
+            .sindico-card.card-active .card-icon {
                 background-color: #E85D04 !important;
                 color: white !important;
+            }
+
+            /* Cards de Benefícios (Nova Seção) */
+            .benefit-card.card-active .benefit-icon {
+                background-color: #E85D04 !important; /* Fundo Laranja */
+                box-shadow: 0 4px 10px rgba(232, 93, 4, 0.4);
+                transform: scale(1.1);
+            }
+            .benefit-card.card-active .benefit-icon i {
+                color: #ffffff !important; /* Ícone Branco */
+            }
+            .benefit-card.card-active {
+                transform: translateY(-5px); /* Leve subida no texto */
             }
         }
 
@@ -306,8 +320,8 @@
             <div class="container mx-auto max-w-7xl px-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     
-                    <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
+                    <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
+                        <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-clock text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
                         </div>
                         <h3 class="text-xl font-bold text-brand-green mb-3">Aberto 24h</h3>
@@ -316,8 +330,8 @@
                         </p>
                     </div>
 
-                    <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
+                    <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
+                        <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-user-slash text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
                         </div>
                         <h3 class="text-xl font-bold text-brand-green mb-3">Sem Funcionários</h3>
@@ -326,8 +340,8 @@
                         </p>
                     </div>
 
-                    <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
+                    <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
+                        <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-qrcode text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
                         </div>
                         <h3 class="text-xl font-bold text-brand-green mb-3">Pix & Cartão</h3>
@@ -336,8 +350,8 @@
                         </p>
                     </div>
 
-                    <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
+                    <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
+                        <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-video text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
                         </div>
                         <h3 class="text-xl font-bold text-brand-green mb-3">Monitoramento Total</h3>
@@ -663,7 +677,8 @@
             mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
             mobileMenuOverlay.addEventListener('click', (e) => { if(e.target === mobileMenuOverlay) closeMenu(); });
 
-            const cards = document.querySelectorAll('.sindico-card');
+            // SCROLL SPY PARA CARDS (SÍNDICOS E BENEFÍCIOS)
+            const cards = document.querySelectorAll('.sindico-card, .benefit-card');
             if (cards.length > 0) {
                 const observerOptions = { root: null, rootMargin: '-40% 0px -40% 0px', threshold: 0 };
                 const observer = new IntersectionObserver((entries) => {
