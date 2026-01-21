@@ -106,30 +106,34 @@
             100% { transform: translateX(-50%); } 
         }
         
-        /* --- ACTIVE STATE MOBILE (SCROLL SPY) --- */
+        /* --- ACTIVE STATE MOBILE --- */
         @media (max-width: 1024px) {
-            /* Cards de Síndicos */
-            .sindico-card.card-active {
+            .card-active {
                 transform: translateY(-8px) !important;
                 border-color: #E85D04 !important;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+                
             }
-            .sindico-card.card-active .card-icon {
+            .card-active .card-icon {
                 background-color: #E85D04 !important;
                 color: white !important;
             }
-
             /* Cards de Benefícios (Nova Seção) */
             .benefit-card.card-active .benefit-icon {
-                background-color: #E85D04 !important; /* Fundo Laranja */
+                background-color: #E85D04 !important;
                 box-shadow: 0 4px 10px rgba(232, 93, 4, 0.4);
                 transform: scale(1.1);
             }
             .benefit-card.card-active .benefit-icon i {
-                color: #ffffff !important; /* Ícone Branco */
+                color: #ffffff !important;
             }
             .benefit-card.card-active {
-                transform: translateY(-5px); /* Leve subida no texto */
+                transform: translateY(-5px);
+            }
+            /* Cards SÍNDICOS: Sombra REMOVIDA no mobile */
+            .sindico-card.card-active {
+                transform: translateY(-8px) !important;
+                border-color: #E85D04 !important;
+                box-shadow: none !important;
             }
         }
 
@@ -257,7 +261,7 @@
                             Inovação Condominial
                         </span>
                         <h1 class="text-4xl lg:text-6xl font-display font-black text-brand-green leading-tight mb-6">
-                            Conveniência 24h dentro do seu <span class="text-brand-orange">elevador.</span>
+                            Conveniência 24h a um <span class="text-brand-orange">elevador de distância.</span>
                         </h1>
                         <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                             Leve praticidade e segurança para o seu condomínio com custo zero de instalação. O conceito de "posto de conveniência", agora no seu prédio.
@@ -319,7 +323,6 @@
         <section class="py-20 bg-white border-b border-gray-100">
             <div class="container mx-auto max-w-7xl px-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                    
                     <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
                         <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-clock text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
@@ -329,7 +332,6 @@
                             Sua conveniência sempre disponível. Madrugada ou feriado, estamos lá para salvar o seu dia.
                         </p>
                     </div>
-
                     <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
                         <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-user-slash text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
@@ -339,7 +341,6 @@
                             Tecnologia autônoma para compras rápidas. Total privacidade e zero custo trabalhista para o condomínio.
                         </p>
                     </div>
-
                     <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
                         <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-qrcode text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
@@ -349,7 +350,6 @@
                             Pagamento simplificado e 100% digital. Aceitamos as principais bandeiras direto no totem ou app.
                         </p>
                     </div>
-
                     <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
                         <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-video text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
@@ -359,10 +359,17 @@
                             Sistema de câmeras integrado e gestão de estoque inteligente. Segurança completa para o seu prédio.
                         </p>
                     </div>
-
                 </div>
             </div>
         </section>
+
+        <div class="w-full bg-white m-0 p-0 flex justify-center">
+            <img 
+                src="cesto.png" 
+                alt="Destaque Empório" 
+                class="w-full lg:w-1/2 h-auto object-cover border-none shadow-none m-0 p-0 block"
+            >
+        </div>
 
         <section id="como-funciona" class="py-24 bg-white">
             <div class="container mx-auto max-w-7xl px-4">
@@ -375,21 +382,21 @@
                     </p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8" id="cards-container">
-                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30 h-full flex flex-col">
+                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-none lg:shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30 h-full flex flex-col">
                         <div class="card-icon w-14 h-14 rounded-xl bg-brand-green text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange transition-colors duration-300">
                             <i class="fa-solid fa-chart-line"></i>
                         </div>
                         <h3 class="text-xl font-bold text-brand-green mb-3">Valorização Real</h3>
                         <p class="text-gray-600 text-sm">Condomínios com mercado interno têm unidades mais valorizadas e procuradas.</p>
                     </div>
-                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30 h-full flex flex-col">
+                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-none lg:shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30 h-full flex flex-col">
                         <div class="card-icon w-14 h-14 rounded-xl bg-brand-green text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange transition-colors duration-300">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
                         <h3 class="text-xl font-bold text-brand-green mb-3">Mais Segurança</h3>
                         <p class="text-gray-600 text-sm">Reduz a entrada de entregadores externos e a saída de moradores à noite.</p>
                     </div>
-                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30 h-full flex flex-col">
+                    <div class="sindico-card bg-gray-50 p-8 rounded-2xl transition-all duration-300 border border-gray-100 shadow-none lg:shadow-sm group hover:-translate-y-2 hover:border-brand-orange/30 h-full flex flex-col">
                         <div class="card-icon w-14 h-14 rounded-xl bg-brand-green text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange transition-colors duration-300">
                             <i class="fa-solid fa-hand-holding-dollar"></i>
                         </div>
@@ -466,51 +473,82 @@
                 </div>
                 <div class="relative w-full max-w-6xl mx-auto overflow-hidden px-2">
                     <div id="reviews-track" class="flex gap-6 transition-transform duration-500 ease-in-out reviews-scroll-container h-full items-stretch py-4">
-                        <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+                        
+                        <div class="w-full md:w-[calc(33.333%-16px)] shrink-0 bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xl mr-4">R</div>
-                                <div><h4 class="font-bold text-gray-800">Roberto Alves</h4><p class="text-xs text-gray-500">Morador • 2 dias atrás</p></div>
-                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                                <div class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xl mr-4 shrink-0">R</div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-gray-800 truncate">Roberto Alves</h4>
+                                    <p class="text-xs text-gray-500 truncate">Morador • 2 dias atrás</p>
+                                </div>
+                                <div class="shrink-0 ml-3">
+                                    <svg viewBox="0 0 24 24" class="w-5 h-5 text-gray-300" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                                </div>
                             </div>
                             <div class="flex text-yellow-400 text-xs mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             <p class="text-gray-600 text-sm leading-relaxed">"Excelente! Salva minha vida quando esqueço o óleo ou quero um sorvete à noite. Preço justo e muito prático."</p>
                         </div>
-                        <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+
+                        <div class="w-full md:w-[calc(33.333%-16px)] shrink-0 bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xl mr-4">M</div>
-                                <div><h4 class="font-bold text-gray-800">Maria Helena</h4><p class="text-xs text-gray-500">Síndica • 1 semana atrás</p></div>
-                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                                <div class="w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xl mr-4 shrink-0">M</div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-gray-800 truncate">Maria Helena</h4>
+                                    <p class="text-xs text-gray-500 truncate">Síndica • 1 semana atrás</p>
+                                </div>
+                                <div class="shrink-0 ml-3">
+                                    <svg viewBox="0 0 24 24" class="w-5 h-5 text-gray-300" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                                </div>
                             </div>
                             <div class="flex text-yellow-400 text-xs mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <p class="text-gray-600 text-sm leading-relaxed">"A instalação foi super rápida e os moradores adoraram. Valorizou o condomínio e reduziu o fluxo de entregadores."</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">"A instalação foi super rápida, valorizou e adoraramos. O condomínio e reduziu o fluxo de entregadores."</p>
                         </div>
-                        <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+
+                        <div class="w-full md:w-[calc(33.333%-16px)] shrink-0 bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xl mr-4">C</div>
-                                <div><h4 class="font-bold text-gray-800">Carlos Eduardo</h4><p class="text-xs text-gray-500">Morador • 3 semanas atrás</p></div>
-                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                                <div class="w-12 h-12 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xl mr-4 shrink-0">C</div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-gray-800 truncate">Carlos Eduardo</h4>
+                                    <p class="text-xs text-gray-500 truncate">Morador • 3 semanas atrás</p>
+                                </div>
+                                <div class="shrink-0 ml-3">
+                                    <svg viewBox="0 0 24 24" class="w-5 h-5 text-gray-300" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                                </div>
                             </div>
                             <div class="flex text-yellow-400 text-xs mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             <p class="text-gray-600 text-sm leading-relaxed">"Indiquei o prédio da minha sogra e ganhei o prêmio da campanha. A empresa é séria e cumpriu tudo o que prometeu."</p>
                         </div>
-                        <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+
+                        <div class="w-full md:w-[calc(33.333%-16px)] shrink-0 bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold text-xl mr-4">F</div>
-                                <div><h4 class="font-bold text-gray-800">Fernanda Lima</h4><p class="text-xs text-gray-500">Moradora • 1 mês atrás</p></div>
-                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                                <div class="w-12 h-12 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold text-xl mr-4 shrink-0">F</div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-gray-800 truncate">Fernanda Lima</h4>
+                                    <p class="text-xs text-gray-500 truncate">Moradora • 1 mês atrás</p>
+                                </div>
+                                <div class="shrink-0 ml-3">
+                                    <svg viewBox="0 0 24 24" class="w-5 h-5 text-gray-300" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                                </div>
                             </div>
                             <div class="flex text-yellow-400 text-xs mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             <p class="text-gray-600 text-sm leading-relaxed">"A variedade de produtos é ótima. Tem bebidas geladas e lanches rápidos. O pão de queijo congelado é top!"</p>
                         </div>
-                         <div class="min-w-[100%] md:min-w-[calc(33.333%-16px)] bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
+
+                         <div class="w-full md:w-[calc(33.333%-16px)] shrink-0 bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100 flex flex-col h-full">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xl mr-4">J</div>
-                                <div><h4 class="font-bold text-gray-800">João Paulo</h4><p class="text-xs text-gray-500">Síndico Profissional • 2 meses atrás</p></div>
-                                <div class="ml-auto text-gray-300"><i class="fab fa-google"></i></div>
+                                <div class="w-12 h-12 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xl mr-4 shrink-0">J</div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-bold text-gray-800 truncate">João Paulo</h4>
+                                    <p class="text-xs text-gray-500 truncate">Síndico Profissional • 2 meses atrás</p>
+                                </div>
+                                <div class="shrink-0 ml-3">
+                                    <svg viewBox="0 0 24 24" class="w-5 h-5 text-gray-300" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                                </div>
                             </div>
                             <div class="flex text-yellow-400 text-xs mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             <p class="text-gray-600 text-sm leading-relaxed">"Já instalei em 3 condomínios que administro. Zero custo e zero dor de cabeça. O suporte deles é excelente."</p>
                         </div>
+
                     </div>
                 </div>
                 <div class="w-full flex justify-center gap-2 mt-10 z-10 relative" id="reviews-dots">
