@@ -11,6 +11,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
+    <link rel="stylesheet" href="style.css"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -172,11 +173,7 @@
     <div id="loader" class="fixed inset-0 bg-brand-cream z-[9999] flex flex-col items-center justify-center">
         <div class="flex flex-col items-center w-64 animate-fade-in-up">
             <div class="flex flex-col items-center mb-8 transform scale-110">
-                <i class="fa-solid fa-basket-shopping text-brand-orange text-6xl mb-3"></i>
-                <div class="flex flex-col items-center">
-                    <span class="font-display font-bold text-3xl text-brand-green leading-none tracking-tight">EMPÓRIO</span>
-                    <span class="font-display font-bold text-[0.6rem] text-brand-green leading-none tracking-widest uppercase mt-1">DO MORADOR</span>
-                </div>
+                <img src="logoloader.png" alt="Carregando..." class="w-48 h-auto object-contain mb-3">
             </div>
             <div class="w-full bg-gray-200 rounded-full h-[3px] overflow-hidden">
                 <div class="bg-brand-orange h-full rounded-full animate-loader-bar" style="width: 0%;"></div>
@@ -189,11 +186,7 @@
         <div class="container mx-auto max-w-7xl px-4">
             <div class="flex h-20 items-center justify-between bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg mt-4 px-6 shadow-lg">
                 <a href="#hero" class="flex items-center gap-1 hover:scale-105 transition-transform group">
-                    <i class="fa-solid fa-basket-shopping text-brand-orange text-4xl group-hover:rotate-12 transition-transform"></i>
-                    <div class="flex flex-col justify-center">
-                        <span class="font-display font-bold text-xl text-brand-green leading-none tracking-tight">EMPÓRIO</span>
-                        <span class="font-display font-bold text-[0.45rem] text-brand-green leading-none tracking-widest uppercase text-left ml-[1px]">DO MORADOR</span>
-                    </div>
+                    <img src="logo.png" alt="Empório do Morador" class="h-10 w-auto object-contain">
                 </a>
                 <nav class="hidden lg:block">
                     <ul class="flex items-center gap-8 text-sm font-bold uppercase tracking-wide text-brand-green">
@@ -227,11 +220,7 @@
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-green/95 backdrop-blur-xl z-[999] flex flex-col p-6 transition-transform duration-300 ease-in-out translate-x-full lg:hidden">
         <div class="flex justify-between items-center mb-10">
             <div class="flex items-center gap-1">
-                <i class="fa-solid fa-basket-shopping text-brand-orange text-3xl"></i>
-                <div class="flex flex-col justify-center">
-                    <span class="font-display font-bold text-xl text-white leading-none tracking-tight">EMPÓRIO</span>
-                    <span class="font-display font-bold text-[0.45rem] text-white leading-none tracking-widest uppercase text-left ml-[1px]">DO MORADOR</span>
-                </div>
+                <img src="logo.png" alt="Empório do Morador" class="h-10 w-auto object-contain brightness-0 invert">
             </div>
             <button id="close-menu" class="text-white text-3xl focus:outline-none p-2 active:rotate-90 transition-transform">
                 <i class="fas fa-times"></i>
@@ -264,7 +253,7 @@
                             Conveniência 24h a um <span class="text-brand-orange">elevador de distância.</span>
                         </h1>
                         <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                            Leve praticidade e segurança para o seu condomínio com custo zero de instalação. O conceito de "posto de conveniência", agora no seu prédio.
+                            Leve praticidade e segurança para o seu condomínio com custo zero de instalação. O conceito de "loja de conveniência", agora no seu prédio.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                             <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Sou%20s%C3%ADndico%2Fgestor%20e%20gostaria%20de%20solicitar%20uma%20proposta%20t%C3%A9cnica." 
@@ -294,29 +283,29 @@
         <div class="bg-brand-green py-4 overflow-hidden relative flex">
             <div class="flex gap-12 text-white/90 font-bold uppercase text-sm tracking-widest whitespace-nowrap marquee-text">
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Autoatendimento</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Ambiente Seguro</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Autoatendimento</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Ambiente Seguro</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Autoatendimento</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Ambiente Seguro</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Autoatendimento</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Ambiente Seguro</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Autoatendimento</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Ambiente Seguro</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Aberto 24h</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Sem Funcionários</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Autoatendimento</span>
                 <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Pix & Cartão</span>
-                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Monitoramento Total</span>
+                <span><i class="fas fa-bolt text-brand-orange mx-2"></i> Ambiente Seguro</span>
             </div>
         </div>
 
@@ -336,9 +325,9 @@
                         <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-user-slash text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-green mb-3">Sem Funcionários</h3>
+                        <h3 class="text-xl font-bold text-brand-green mb-3">Autoatendimento</h3>
                         <p class="text-gray-600 text-sm leading-relaxed max-w-xs">
-                            Tecnologia autônoma para compras rápidas. Total privacidade e zero custo trabalhista para o condomínio.
+                            Você no controle. Escolha, pague e leve em instantes, sem filas e com total privacidade.
                         </p>
                     </div>
                     <div class="benefit-card flex flex-col items-center text-center group cursor-default transition-transform duration-300">
@@ -354,9 +343,9 @@
                         <div class="benefit-icon w-20 h-20 rounded-full bg-brand-green/5 flex items-center justify-center mb-6 group-hover:bg-brand-orange transition-all duration-300 shadow-sm group-hover:shadow-md">
                             <i class="fa-solid fa-video text-3xl text-brand-orange group-hover:text-white transition-colors"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-brand-green mb-3">Monitoramento Total</h3>
+                        <h3 class="text-xl font-bold text-brand-green mb-3">Ambiente Seguro</h3>
                         <p class="text-gray-600 text-sm leading-relaxed max-w-xs">
-                            Sistema de câmeras integrado e gestão de estoque inteligente. Segurança completa para o seu prédio.
+                            Monitoramento e segurança 24h para garantir a tranquilidade dos moradores durante as compras.
                         </p>
                     </div>
                 </div>
@@ -637,11 +626,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div>
                     <a href="#hero" class="flex items-center gap-1 mb-6 hover:scale-105 transition-transform group origin-left">
-                        <i class="fa-solid fa-basket-shopping text-brand-orange text-2xl group-hover:rotate-12 transition-transform"></i>
-                        <div class="flex flex-col justify-center">
-                            <span class="font-display font-bold text-xl text-white leading-none tracking-tight">EMPÓRIO</span>
-                            <span class="font-display font-bold text-[0.45rem] text-white leading-none tracking-widest uppercase text-left ml-[1px]">DO MORADOR</span>
-                        </div>
+                        <img src="logo.png" alt="Empório do Morador" class="h-10 w-auto object-contain">
                     </a>
                     <p class="text-sm leading-relaxed text-white/60 mb-6">Especialistas em mercados autônomos para condomínios. Levamos tecnologia, praticidade e segurança para o seu dia a dia.</p>
                 </div>
@@ -681,7 +666,10 @@
 
     <a href="https://wa.me/5513974038014?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] text-white rounded-full shadow-lg flex items-center justify-center text-3xl hover:scale-110 transition-transform duration-300"><i class="fa-brands fa-whatsapp"></i></a>
 
+    <script src="script.js"></script> 
+    
     <script>
+        // MANTIVE O SCRIPT DE UI AQUI POIS JÁ ESTAVA NO HTML ORIGINAL
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             if (loader) {
@@ -696,25 +684,6 @@
         });
 
         document.addEventListener('DOMContentLoaded', () => {
-            const hamburgerBtn = document.getElementById('hamburger-menu');
-            const closeMenuBtn = document.getElementById('close-menu');
-            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-
-            function openMenu() {
-                mobileMenuOverlay.classList.remove('translate-x-full');
-                document.body.style.overflow = 'hidden';
-            }
-            function closeMenu() {
-                mobileMenuOverlay.classList.add('translate-x-full');
-                document.body.style.overflow = '';
-            }
-
-            if(hamburgerBtn) hamburgerBtn.addEventListener('click', (e) => { e.stopPropagation(); openMenu(); });
-            if(closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
-            mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-            mobileMenuOverlay.addEventListener('click', (e) => { if(e.target === mobileMenuOverlay) closeMenu(); });
-
             // SCROLL SPY PARA CARDS (SÍNDICOS E BENEFÍCIOS)
             const cards = document.querySelectorAll('.sindico-card, .benefit-card');
             if (cards.length > 0) {
